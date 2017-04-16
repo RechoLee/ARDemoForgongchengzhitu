@@ -271,6 +271,7 @@ public class ModelBehaviour : MonoBehaviour
 			//PC
 			if (Application.platform == RuntimePlatform.WindowsEditor) {
 				if (col.transform == myInfo.Parent) {
+					//可以在这里加一些适当的颜色或者特效反馈给用户，代表已经触发合并
 					if (Input.GetMouseButtonUp (0)) {
 						TouchEventController.instance.isSplit = true;
 						TouchEventController.instance.touchArgs.MyMouseState = MouseState.staticState;
@@ -282,6 +283,7 @@ public class ModelBehaviour : MonoBehaviour
 			//Android
 			if (Application.platform == RuntimePlatform.Android) {
 				if (col.transform == myInfo.Parent) {
+					//可以在这里加一些适当的颜色或者特效反馈给用户，代表已经触发合并
 					if (Input.GetTouch (0).phase == TouchPhase.Ended) {
 						TouchEventController.instance.isSplit = true;
 						TouchEventController.instance.touchArgs.MyMouseState = MouseState.staticState;
