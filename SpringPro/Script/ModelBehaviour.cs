@@ -57,10 +57,12 @@ public class ModelBehaviour : MonoBehaviour
 	//定义一个模型的自旋转轴
 	Vector3 rotateSelf=new Vector3(1,1,1);
 
+	//获取自身的一个动画
+	public DOTweenAnimation myAni=null;
 
-	void Start()
+
+	void Awake()
 	{
-
 		#region 初始化模型树的信息
 		myInfo=new SelfInfo(transform);
 		myInfo.InitState();
@@ -71,9 +73,13 @@ public class ModelBehaviour : MonoBehaviour
 		{
 			myInfo.Children=treeChildren;
 		}
-
-		virtualParent=GameObject.FindGameObjectWithTag("VirtualParent").GetComponent<Transform>();
+			
 		#endregion
+	}
+
+	void Start()
+	{
+		virtualParent=GameObject.FindGameObjectWithTag("VirtualParent").GetComponent<Transform>();
 
 		myTouchArgs = TouchEventController.instance.touchArgs;
 
@@ -82,9 +88,13 @@ public class ModelBehaviour : MonoBehaviour
 			initColor = GetComponent<Renderer> ().material.color;
 		}
 
-		Debug.Log ("position:"+myInfo.Position);
-		Debug.Log ("scale:"+myInfo.Scale);
-		Debug.Log ("rotation:"+myInfo.Rotation);
+		//获取自身的动画片段的脚本
+		if (GetComponent<DOTweenAnimation> () != null) {
+			myAni = GetComponent<DOTweenAnimation> ();
+		}
+//		Debug.Log ("position:"+myInfo.Position);
+//		Debug.Log ("scale:"+myInfo.Scale);
+//		Debug.Log ("rotation:"+myInfo.Rotation);
 	}
 
 	void Update()
@@ -216,20 +226,36 @@ public class ModelBehaviour : MonoBehaviour
 	/// Splits the model.拆分模型
 	/// </summary>
 	/// <param name="splitPos">Split position.拆分到的位置</param>
-	public void SplitModel(Vector3 splitPos)
+	public void SplitModel(Vector3 vec)
 	{
-		splitTween = transform.DOLocalMove (splitPos,1);
-		splitTween.SetAutoKill (false);
+		splitTween= transform.DOLocalMove(vec,1f);
 		splitTween.OnComplete (
-			()=>transform.SetParent(virtualParent)
+			()=>{
+				transform.GetComponent<BoxCollider> ().enabled = true;
+				AllController.instance.ChangeState (transform, new IdleState ());
+				transform.SetParent(virtualParent);
+			}
 		);
+	}
 
+	/// <summary>
+	/// Combines the model.按下按钮自动合并
+	/// </summary>
+	public void CombineModel()
+	{
+		transform.SetParent (myInfo.Parent);
+		GetComponent<BoxCollider>().enabled=false;
+		transform.DOScale (myInfo.Scale,0.3f);
+		transform.DOLocalRotate (myInfo.Rotation, 0.3f);
+		transform.DOLocalMove (myInfo.Position, 0.4f).OnComplete(
+			()=>AllController.instance.ChangeState(transform,new StaticState())
+		);
 	}
 
 	/// <summary>
 	/// Combines the model.合并模型
 	/// </summary>
-	public void CombineModel()
+	public void DragCombineModel()
 	{
 		transform.SetParent (myInfo.Parent);
 		GetComponent<BoxCollider>().enabled=false;
@@ -248,7 +274,7 @@ public class ModelBehaviour : MonoBehaviour
 					if (Input.GetMouseButtonUp (0)) {
 						TouchEventController.instance.isSplit = true;
 						TouchEventController.instance.touchArgs.MyMouseState = MouseState.staticState;
-						CombineModel ();
+						DragCombineModel();
 					}
 				}
 			}
@@ -259,11 +285,22 @@ public class ModelBehaviour : MonoBehaviour
 					if (Input.GetTouch (0).phase == TouchPhase.Ended) {
 						TouchEventController.instance.isSplit = true;
 						TouchEventController.instance.touchArgs.MyMouseState = MouseState.staticState;
-						CombineModel ();
+						DragCombineModel ();
 					}
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Comes the back init.状态为static，在selfinfo中的初始状态
+	/// </summary>
+	public void ComeBackInitState()
+	{
+		transform.localScale = myInfo.Scale;
+		transform.localEulerAngles = myInfo.Rotation;
+		//将自己状态置为static
+		AllController.instance.ChangeState(transform,new StaticState());
 	}
 
 }
