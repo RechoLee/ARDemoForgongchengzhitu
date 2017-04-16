@@ -1,0 +1,219 @@
+fileFormatVersion: 2
+guid: 20450ffee23ef47468fe7aa763b40ccd
+timeCreated: 1491298293
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Hex
+    100004: Hex 1
+    100006: Hex 2
+    100008: Hex 3
+    100010: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54002"
+    100012: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54003"
+    100014: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54004"
+    100016: Socket Head Cap Screw_ISO
+    100018: Socket Head Cap Screw_ISO 1
+    100020: Socket Head Cap Screw_ISO 2
+    100022: Socket Head Cap Screw_ISO 3
+    100024: "\u5012\u89D2002"
+    100026: "\u5207\u9664-\u62C9\u4F38002"
+    100028: "\u5207\u9664-\u62C9\u4F38002_MeshPart0"
+    100030: "\u5207\u9664-\u62C9\u4F38002_MeshPart1"
+    100032: "\u5207\u9664-\u62C9\u4F38002_MeshPart2"
+    100034: "\u5207\u9664-\u62C9\u4F38002_MeshPart3"
+    100036: "\u5207\u9664-\u62C9\u4F38003"
+    100038: "\u5207\u9664-\u62C9\u4F38004"
+    100040: "\u5207\u9664-\u62C9\u4F38004_MeshPart0"
+    100042: "\u5207\u9664-\u62C9\u4F38004_MeshPart1"
+    100044: "\u5207\u9664-\u62C9\u4F38004_MeshPart2"
+    100046: "\u5E95\u677F"
+    100048: "\u652F\u67B6"
+    100050: "\u652F\u67B6 1"
+    100052: "\u652F\u67B6\u90E8\u4EF6"
+    100054: "\u65CB\u8F6C002"
+    100056: "\u65CB\u8F6C003"
+    100058: "\u65CB\u8F6C004"
+    100060: "\u8F6E\u5B50"
+    100062: "\u8F6E\u67B6.SLDASM 1"
+    100064: "\u8F6E\u90E8\u4EF6"
+    100066: "\u8F74"
+    100068: "\u8F74\u627F"
+    100070: "\u8F74\u627F 1"
+    100072: "\u952E"
+    100074: "\u955C\u5411\u652F\u67B6\u90E8\u4EF6"
+    100076: "\u9635\u5217(\u7EBF\u6027)1"
+    100078: "\u9635\u5217(\u7EBF\u6027)1 1"
+    400000: //RootNode
+    400002: Hex
+    400004: Hex 1
+    400006: Hex 2
+    400008: Hex 3
+    400010: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54002"
+    400012: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54003"
+    400014: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54004"
+    400016: Socket Head Cap Screw_ISO
+    400018: Socket Head Cap Screw_ISO 1
+    400020: Socket Head Cap Screw_ISO 2
+    400022: Socket Head Cap Screw_ISO 3
+    400024: "\u5012\u89D2002"
+    400026: "\u5207\u9664-\u62C9\u4F38002"
+    400028: "\u5207\u9664-\u62C9\u4F38002_MeshPart0"
+    400030: "\u5207\u9664-\u62C9\u4F38002_MeshPart1"
+    400032: "\u5207\u9664-\u62C9\u4F38002_MeshPart2"
+    400034: "\u5207\u9664-\u62C9\u4F38002_MeshPart3"
+    400036: "\u5207\u9664-\u62C9\u4F38003"
+    400038: "\u5207\u9664-\u62C9\u4F38004"
+    400040: "\u5207\u9664-\u62C9\u4F38004_MeshPart0"
+    400042: "\u5207\u9664-\u62C9\u4F38004_MeshPart1"
+    400044: "\u5207\u9664-\u62C9\u4F38004_MeshPart2"
+    400046: "\u5E95\u677F"
+    400048: "\u652F\u67B6"
+    400050: "\u652F\u67B6 1"
+    400052: "\u652F\u67B6\u90E8\u4EF6"
+    400054: "\u65CB\u8F6C002"
+    400056: "\u65CB\u8F6C003"
+    400058: "\u65CB\u8F6C004"
+    400060: "\u8F6E\u5B50"
+    400062: "\u8F6E\u67B6.SLDASM 1"
+    400064: "\u8F6E\u90E8\u4EF6"
+    400066: "\u8F74"
+    400068: "\u8F74\u627F"
+    400070: "\u8F74\u627F 1"
+    400072: "\u952E"
+    400074: "\u955C\u5411\u652F\u67B6\u90E8\u4EF6"
+    400076: "\u9635\u5217(\u7EBF\u6027)1"
+    400078: "\u9635\u5217(\u7EBF\u6027)1 1"
+    2300000: Hex
+    2300002: Hex 1
+    2300004: Hex 2
+    2300006: Hex 3
+    2300008: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54002"
+    2300010: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54003"
+    2300012: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54004"
+    2300014: "\u5012\u89D2002"
+    2300016: "\u5207\u9664-\u62C9\u4F38002_MeshPart0"
+    2300018: "\u5207\u9664-\u62C9\u4F38002_MeshPart1"
+    2300020: "\u5207\u9664-\u62C9\u4F38002_MeshPart2"
+    2300022: "\u5207\u9664-\u62C9\u4F38002_MeshPart3"
+    2300024: "\u5207\u9664-\u62C9\u4F38003"
+    2300026: "\u5207\u9664-\u62C9\u4F38004_MeshPart0"
+    2300028: "\u5207\u9664-\u62C9\u4F38004_MeshPart1"
+    2300030: "\u5207\u9664-\u62C9\u4F38004_MeshPart2"
+    2300032: "\u65CB\u8F6C002"
+    2300034: "\u65CB\u8F6C003"
+    2300036: "\u65CB\u8F6C004"
+    2300038: "\u9635\u5217(\u7EBF\u6027)1"
+    2300040: "\u9635\u5217(\u7EBF\u6027)1 1"
+    3300000: Hex
+    3300002: Hex 1
+    3300004: Hex 2
+    3300006: Hex 3
+    3300008: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54002"
+    3300010: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54003"
+    3300012: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54004"
+    3300014: "\u5012\u89D2002"
+    3300016: "\u5207\u9664-\u62C9\u4F38002_MeshPart0"
+    3300018: "\u5207\u9664-\u62C9\u4F38002_MeshPart1"
+    3300020: "\u5207\u9664-\u62C9\u4F38002_MeshPart2"
+    3300022: "\u5207\u9664-\u62C9\u4F38002_MeshPart3"
+    3300024: "\u5207\u9664-\u62C9\u4F38003"
+    3300026: "\u5207\u9664-\u62C9\u4F38004_MeshPart0"
+    3300028: "\u5207\u9664-\u62C9\u4F38004_MeshPart1"
+    3300030: "\u5207\u9664-\u62C9\u4F38004_MeshPart2"
+    3300032: "\u65CB\u8F6C002"
+    3300034: "\u65CB\u8F6C003"
+    3300036: "\u65CB\u8F6C004"
+    3300038: "\u9635\u5217(\u7EBF\u6027)1"
+    3300040: "\u9635\u5217(\u7EBF\u6027)1 1"
+    4300000: "\u9635\u5217(\u7EBF\u6027)1"
+    4300002: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54002"
+    4300004: "\u65CB\u8F6C002"
+    4300006: "\u5207\u9664-\u62C9\u4F38003"
+    4300008: "\u5012\u89D2002"
+    4300010: "\u5207\u9664-\u62C9\u4F38002_MeshPart0"
+    4300012: "\u5207\u9664-\u62C9\u4F38002_MeshPart1"
+    4300014: "\u5207\u9664-\u62C9\u4F38002_MeshPart2"
+    4300016: "\u5207\u9664-\u62C9\u4F38002_MeshPart3"
+    4300018: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54003"
+    4300020: "\u65CB\u8F6C003"
+    4300022: Hex
+    4300024: Hex
+    4300026: Hex
+    4300028: Hex
+    4300030: "\u9635\u5217(\u7EBF\u6027)1"
+    4300032: "\u5207\u9664-\u62C9\u4F38004_MeshPart0"
+    4300034: "\u5207\u9664-\u62C9\u4F38004_MeshPart1"
+    4300036: "\u5207\u9664-\u62C9\u4F38004_MeshPart2"
+    4300038: "M10 \u516D\u89D2\u87BA\u4E1D\u7684\u67F1\u5F62\u6C89\u5934\u5B54004"
+    4300040: "\u65CB\u8F6C004"
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

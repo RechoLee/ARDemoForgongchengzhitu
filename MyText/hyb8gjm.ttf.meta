@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e47ad67e2fced9042a5e1d1c89a830b1
+timeCreated: 1491558711
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: HYYuanDieJ
+  fontNames:
+  - HYYuanDieJ
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
