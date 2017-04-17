@@ -143,7 +143,6 @@ public class TouchEventController : MonoBehaviour
 									StartCoroutine (AllController.instance.InitLastTarget ());
 								}
 								touchArgs.TargetTransform = touchHit.transform;
-								timer = 50f;
 							}
 							touchArgs.MyTouchState = TouchState.Drag;
 							isSplit = false;
@@ -196,7 +195,6 @@ public class TouchEventController : MonoBehaviour
 							StartCoroutine (AllController.instance.InitLastTarget ());
 						}
 						touchArgs.TargetTransform = mouseHit.transform;
-						timer = 50f;
 					}
 					touchArgs.MyMouseState = MouseState.Drag;
 					isSplit = false;

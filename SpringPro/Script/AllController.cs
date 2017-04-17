@@ -200,7 +200,6 @@ public class AllController : MonoBehaviour
 		ChangeState(TouchEventController.instance.touchArgs.TargetTransform,new StaticState());
 		//将touchEventArgs中tar置为null
 		TouchEventController.instance.touchArgs.TargetTransform=null;
-		TouchEventController.instance.isSplit = false;
 		ModelBehaviour parentModel = GameObject.FindGameObjectWithTag ("group1").GetComponent<ModelBehaviour> ();
 		SelfInfo parentInfo = parentModel.myInfo;
 		for (int i = 0; i < parentInfo.Children.Length; i++){
@@ -218,7 +217,6 @@ public class AllController : MonoBehaviour
 	{
 		//将touchEventArgs中tar置为null
 		TouchEventController.instance.touchArgs.TargetTransform=null;
-		TouchEventController.instance.isSplit = true;
 		Transform parent=GameObject.FindGameObjectWithTag ("group1").GetComponent<Transform> ();
 		//切换成static状态
 		ModelBehaviour parentModel = parent.GetComponent<ModelBehaviour> ();
