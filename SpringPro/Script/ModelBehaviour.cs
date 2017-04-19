@@ -54,11 +54,11 @@ public class ModelBehaviour : MonoBehaviour
 	//合并时候的动画
 	public Tweener combineTween;
 
+	public float min;
+	public float max;
+
 	//定义一个模型的自旋转轴
 	Vector3 rotateSelf=new Vector3(1,1,1);
-
-	//获取自身的一个动画
-	public DOTweenAnimation myAni=null;
 
 
 	void Awake()
@@ -88,13 +88,7 @@ public class ModelBehaviour : MonoBehaviour
 			initColor = GetComponent<Renderer> ().material.color;
 		}
 
-		//获取自身的动画片段的脚本
-		if (GetComponent<DOTweenAnimation> () != null) {
-			myAni = GetComponent<DOTweenAnimation> ();
-		}
-//		Debug.Log ("position:"+myInfo.Position);
-//		Debug.Log ("scale:"+myInfo.Scale);
-//		Debug.Log ("rotation:"+myInfo.Rotation);
+
 	}
 
 	void Update()
@@ -122,14 +116,6 @@ public class ModelBehaviour : MonoBehaviour
 		{
 			RotateModel ();
 		}
-	
-		//test
-//		Debug.Log ("position:"+myInfo.Position);
-//		Debug.Log ("scale:"+myInfo.Scale);
-//		Debug.Log ("rotation:"+myInfo.Rotation);
-		//test
-
-
 	}
 
 	//用来存储触屏的上一次和本次的两手指之间距离
@@ -149,7 +135,7 @@ public class ModelBehaviour : MonoBehaviour
 				//缩小
 				transform.localScale*=0.91f;
 			}
-			transform.localScale =new Vector3(Mathf.Clamp (transform.localScale.x,0.2f,5),Mathf.Clamp(transform.localScale.y,0.2f,5),Mathf.Clamp(transform.localScale.z,0.2f,5));
+			transform.localScale =new Vector3(Mathf.Clamp (transform.localScale.x,min,max),Mathf.Clamp(transform.localScale.y,min,max),Mathf.Clamp(transform.localScale.z,min,max));
 		}
 
 		//android
@@ -171,7 +157,7 @@ public class ModelBehaviour : MonoBehaviour
 				//缩小
 				transform.localScale*=0.98f;
 			}
-			transform.localScale =new Vector3(Mathf.Clamp (transform.localScale.x,0.2f,5),Mathf.Clamp(transform.localScale.y,0.2f,5),Mathf.Clamp(transform.localScale.z,0.2f,5));
+			transform.localScale =new Vector3(Mathf.Clamp (transform.localScale.x,min,max),Mathf.Clamp(transform.localScale.y,min,max),Mathf.Clamp(transform.localScale.z,min,max));
 		}
 	}
 
@@ -204,9 +190,9 @@ public class ModelBehaviour : MonoBehaviour
 			transform.position = Camera.main.ViewportToWorldPoint (new Vector3(v1.x,v1.y,v2.z));
 		}
 
-		if (GetComponent<Renderer> () != null) {
-			GetComponent<Renderer> ().material.color = Color.red;
-		}
+//		if (GetComponent<Renderer> () != null) {
+//			GetComponent<Renderer> ().material.color = Color.red;
+//		}
 	}
 
 	//初始状态模型
@@ -217,9 +203,9 @@ public class ModelBehaviour : MonoBehaviour
 
 		//物体材质回到本来颜色
 		//获取本身材质颜色
-		if (GetComponent<Renderer> ()!=null) {
-			GetComponent<Renderer> ().material.color = initColor;
-		}
+//		if (GetComponent<Renderer> ()!=null) {
+//			GetComponent<Renderer> ().material.color = initColor;
+//		}
 	}
 
 	/// <summary>
@@ -286,7 +272,7 @@ public class ModelBehaviour : MonoBehaviour
 					//可以在这里加一些适当的颜色或者特效反馈给用户，代表已经触发合并
 					if (Input.GetTouch (0).phase == TouchPhase.Ended) {
 						TouchEventController.instance.isSplit = true;
-						TouchEventController.instance.touchArgs.MyMouseState = MouseState.staticState;
+						TouchEventController.instance.touchArgs.MyTouchState = TouchState.staticState;
 						DragCombineModel ();
 					}
 				}
@@ -295,12 +281,24 @@ public class ModelBehaviour : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Comes the back init.状态为static，在selfinfo中的初始状态
+	/// Comes the back init.状态为static，在selfinfo中的初始状态，不会回到原来的位置
 	/// </summary>
 	public void ComeBackInitState()
 	{
 		transform.localScale = myInfo.Scale;
 		transform.localEulerAngles = myInfo.Rotation;
+		//将自己状态置为static
+		AllController.instance.ChangeState(transform,new StaticState());
+	}
+
+	/// <summary>
+	/// Resets the start state.让对象回到刚开始的位置，会回到原来的位置
+	/// </summary>
+	public void ResetStartState()
+	{
+		transform.localScale = myInfo.Scale;
+		transform.localEulerAngles = myInfo.Rotation;
+		transform.DOLocalMove (myInfo.Position,1f);
 		//将自己状态置为static
 		AllController.instance.ChangeState(transform,new StaticState());
 	}
@@ -368,7 +366,7 @@ public class SelfInfo
 		set{parent = value; }
 	}
 
-	private Transform[] children;
+	private Transform[] children=new Transform[]{};
 	/// <summary>
 	/// Gets or sets the children.子物体的数组
 	/// </summary>

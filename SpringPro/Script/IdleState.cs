@@ -9,7 +9,9 @@ public class IdleState :BaseState
 	public override void OnEnter (Transform tra)
 	{
 		if (tra != null) {
-			tra.GetComponent<ModelBehaviour> ().isIdle = true;
+			if (tra.GetComponent<ModelBehaviour> () != null) {
+				tra.GetComponent<ModelBehaviour> ().isIdle = true;
+			}
 		}
 	}
 

@@ -23,9 +23,4 @@ public class FocuingButton : MonoBehaviour
 	{
 		this.GetComponent<RectTransform> ().DOScale (new Vector3 (1f, 1f, 1f), 0.5f);
 	}
-
-//	IEnumerator LocalScale()
-//	{
-//
-//	}
 }

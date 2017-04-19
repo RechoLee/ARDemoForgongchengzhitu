@@ -9,7 +9,7 @@ public class StateManager
 	BaseState currentState = null;
 
 	//操作的对象
-	private Transform traTarget;
+	private Transform traTarget=null;
 
 	//状态集合
 	List<BaseState> listState = new List<BaseState> ();
@@ -33,9 +33,6 @@ public class StateManager
 	{
 		if (!listState.Contains (state)) {
 			listState.Add (state);
-			if (listState.Count == 1) {
-				currentState = state;
-			}
 		}
 	}
 
@@ -47,9 +44,6 @@ public class StateManager
 	{
 		if (listState.Contains (state)) {
 			listState.Remove (state);
-			if (listState.Count == 0) {
-				currentState = null;
-			}
 		}
 	}
 
@@ -59,17 +53,19 @@ public class StateManager
 	/// <param name="state">State.</param>
 	public void ChangeState(BaseState state)
 	{
-		if (listState.Contains (state)) {
-			currentState.OnExit (traTarget);
-			currentState = state;
-			currentState.OnEnter (traTarget);
-		} else {
-			if (currentState != null){
+		if (traTarget!=null) {
+			if (listState.Contains (state)) {
 				currentState.OnExit (traTarget);
+				currentState = state;
+				currentState.OnEnter (traTarget);
+			} else {
+				if (currentState != null) {
+					currentState.OnExit (traTarget);
+				}
+				listState.Add (state);
+				currentState = state;
+				currentState.OnEnter (traTarget);
 			}
-			listState.Add (state);
-			currentState = state;
-			currentState.OnEnter (traTarget);
 		}
 	}
 

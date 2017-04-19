@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 /// <summary>
 /// All controller.场景中的主控制器，负责状态的各个物体的状态控制
 /// </summary>
@@ -9,23 +9,93 @@ public class AllController : MonoBehaviour
 {
 	public static AllController instance=null;
 
+	/// <summary>
+	/// The name of the track.当前识别物体的额名字
+	/// </summary>
+	[HideInInspector]
+	public string trackName="";
+	//存放识别的对象
+	private List<string> trackNameList = new List<string> ();
+
+	//ui的控制类
+	private UIController controllerUI=null;
+
+	private bool dragToggle = false;
+	/// <summary>
+	/// Gets or sets a value indicating whether this <see cref="AllController"/> drag toggle.设置拖动按钮操作开关
+	/// </summary>
+	/// <value><c>true</c> if drag toggle; otherwise, <c>false</c>.</value>
+	public bool DragToggle
+	{
+		get{return dragToggle;}
+		set{dragToggle = value;}
+	}
+
 	//一个存储transform和对应的mgr的字典
 	Dictionary<Transform,StateManager> tsDic=new Dictionary<Transform, StateManager>();
 
 	void Awake()
 	{
 		instance = this;
+
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 	}
 
 	void Start()
 	{
-		//暂时放在这里初始化，
-		AddAllStateMgr("group1");
-
+		//获取ui控制类
+		controllerUI = GameObject.FindGameObjectWithTag ("UIController").GetComponent<UIController> ();
+		
 		TouchEventController.instance.ModelMouseDele = OnMouse;
 		TouchEventController.instance.ModelTouchDele = OnTouch;
 	}
 
+	void Update()
+	{
+		if (!string.IsNullOrEmpty (trackName)) {
+			//控制scan的显式
+			controllerUI.SetScan (false);
+			SetParentCollider (trackName);
+			if (!trackNameList.Contains (trackName)) {
+				trackNameList.Add (trackName);
+				//调用添加状态的方法,传入父物体的名字
+				AddAllStateMgr (trackName);
+			}
+		} else {
+			controllerUI.SetScan (true);
+		}
+
+		//场景的跳转
+		ChangeScene();
+	}
+
+	void SetParentCollider(string name)
+	{
+		Collider col=GameObject.FindGameObjectWithTag (name).GetComponent<Collider> ();
+		if (col&&dragToggle != col.enabled) {
+			col.enabled = dragToggle;
+		}
+	}
+
+	public void SetChildrenCollider(bool toggle)
+	{
+		if (!toggle) {
+			if (!string.IsNullOrEmpty (trackName)) {
+				SelfInfo info= GameObject.FindGameObjectWithTag (trackName).GetComponent<ModelBehaviour> ().myInfo;
+				for (int i = 0; i < info.Children.Length; i++) {
+					info.Children [i].GetComponent<Collider> ().enabled = true;
+				}
+			}
+		}
+	}
+
+	void ChangeScene()
+	{
+		//这里将返回到上一个场景中
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			SceneManager.LoadScene (0);
+		}
+	}
 
 
 	/// <summary>
@@ -194,14 +264,14 @@ public class AllController : MonoBehaviour
 	/// <summary>
 	/// Autos the combine.自动合并，供按钮注册合并事件
 	/// </summary>
-	public void AutoCombineBtn()
+	public void AutoCombineBtn(string name)
 	{
 		//将选中的物体状态置为static
 		ChangeState(TouchEventController.instance.touchArgs.TargetTransform,new StaticState());
 		//将touchEventArgs中tar置为null
 		TouchEventController.instance.touchArgs.TargetTransform=null;
 		TouchEventController.instance.isSplit = false;
-		ModelBehaviour parentModel = GameObject.FindGameObjectWithTag ("group1").GetComponent<ModelBehaviour> ();
+		ModelBehaviour parentModel = GameObject.FindGameObjectWithTag (name).GetComponent<ModelBehaviour> ();
 		SelfInfo parentInfo = parentModel.myInfo;
 		for (int i = 0; i < parentInfo.Children.Length; i++){
 			if (parentInfo.Children [i].GetComponent<ModelBehaviour> () != null) {
@@ -214,23 +284,23 @@ public class AllController : MonoBehaviour
 	/// <summary>
 	/// Autos the split.自动拆分，供按钮注册拆分事件
 	/// </summary>
-	public void AutoSplitBtn()
+	public void AutoSplitBtn(string name)
 	{
 		//将touchEventArgs中tar置为null
 		TouchEventController.instance.touchArgs.TargetTransform=null;
 		TouchEventController.instance.isSplit = true;
-		Transform parent=GameObject.FindGameObjectWithTag ("group1").GetComponent<Transform> ();
+		Transform parent=GameObject.FindGameObjectWithTag (name).GetComponent<Transform> ();
 		//切换成static状态
 		ModelBehaviour parentModel = parent.GetComponent<ModelBehaviour> ();
 		//调用对象自身的方法回归到本来状态
 		parentModel.ComeBackInitState ();
 		SelfInfo parentInfo = parentModel.myInfo;
-		float r = 5f;
-		float delta = 3.14f / 6.0f;
+		float r =3f;
+		float delta = 3.14f /3f;
 		for (int i = 0; i < parentInfo.Children.Length; i++){
 			if (parentInfo.Children [i].GetComponent<ModelBehaviour> () != null) {
 				//计算出圆上的点
-				Vector3 pos = new Vector3 (r*Mathf.Cos(delta*i),parentInfo.Self.position.y,r*Mathf.Sin(delta*i));
+				Vector3 pos = new Vector3 (r*Mathf.Cos(delta*i),0,r*Mathf.Sin(delta*i));
 				parentInfo.Children [i].GetComponent<ModelBehaviour> ().SplitModel (pos);
 			}
 		}

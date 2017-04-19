@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-	public  Transform tra1;
-	public  Transform tra2;
-	public Transform tra3;
 
-	List<Transform> listTra=new List<Transform>();
-
-	void Awake()
+	void Start()
 	{
-		listTra.Add (tra1);
-		listTra.Add (tra2);
+		Debug.Log ("2.5:"+Mathf.Round(2.5f));
+		Debug.Log ("3.5:"+Mathf.Round(3.5f));
+		Debug.Log ("2.4:"+Mathf.Round(2.4f));
+		Debug.Log ("2.6:"+Mathf.Round(2.6f));
+		Debug.Log ("-3.5:"+Mathf.Round(-3.5f));
+		Debug.Log ("-2.5:"+Mathf.Round(-2.5f));
 	}
-
-	void Update()
-	{
-		Debug.Log(listTra.Contains (tra3));
-	}
-
 
 }
