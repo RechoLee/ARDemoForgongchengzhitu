@@ -31,12 +31,12 @@ public class VirtualControl : MonoBehaviour,IVirtualButtonEventHandler
 	{
 		switch (vb.VirtualButtonName) {
 		case "p-28":
-			//..
-
+			//..0
+			vb.GetComponent<Renderer>().material.color=colors[i%3];
 			break;
 		case "7-1":
 			//..
-
+			vb.GetComponent<Renderer>().material.color=colors[i%3];
 			break;
 		case "group1":
 			//..

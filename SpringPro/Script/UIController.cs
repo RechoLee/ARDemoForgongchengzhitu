@@ -4,6 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using RenderHeads.Media.AVProVideo;
+using System.IO;
+using System.Text;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -30,6 +33,14 @@ public class UIController : MonoBehaviour
 
 	public GameObject DropDownObj;
 
+	public GameObject voiceBtn;
+
+	public GameObject textInfo;
+
+	public AudioClip[] clips;
+
+	private AudioSource audioCtl;
+
 	//vedio是否在播放
 	private bool isPlay=false;
 
@@ -40,6 +51,9 @@ public class UIController : MonoBehaviour
 
 	public CloseTextPanelDelegate closeDel=null;
 
+	//要加载的文本名称
+	private string textName="";
+
 	void Awake()
 	{
 		instance = this;
@@ -48,6 +62,9 @@ public class UIController : MonoBehaviour
 	void Start()
 	{
 		allController = GameObject.FindGameObjectWithTag ("AllController").GetComponent<AllController>();
+
+		audioCtl = GetComponent<AudioSource> ();
+
 	}
 
 	/// <summary>
@@ -67,6 +84,14 @@ public class UIController : MonoBehaviour
 		if (media.Control.IsFinished ()) {
 			if (!vedioImage.activeSelf) {
 				vedioImage.SetActive (true);
+			}
+		}
+
+		//当名称发生改变的时候，将名字赋值给当前的textName
+		if (!string.IsNullOrEmpty (allController.trackName)) {
+			if (!string.Equals (allController.trackName, textName)) {
+				textName = allController.trackName;
+				LoadLocalText (textName);
 			}
 		}
 	}
@@ -191,6 +216,10 @@ public class UIController : MonoBehaviour
 		}
 		textPanel.GetComponent<RectTransform>().DOLocalRotate (new Vector3(0,240f,0),3f,RotateMode.FastBeyond360);
 		DropDownObj.SetActive (true);
+
+		//将声音关闭、
+		audioCtl.Stop();
+
 	}
 
 	/// <summary>
@@ -219,4 +248,47 @@ public class UIController : MonoBehaviour
 		DropDownObj.SetActive (true);
 	}
 
+	/// <summary>
+	/// Voices the button change.控制声音的播放
+	/// </summary>
+	public void VoiceBtnChange()
+	{
+		AudioClip nowClip=null;
+		if (!string.IsNullOrEmpty (textName)) {
+			for (int i = 0; i < clips.Length; i++) {
+				if (clips [i].name == textName) {
+					nowClip = clips [i];
+					break;
+				}
+			}
+
+
+			audioCtl.clip = nowClip;
+			audioCtl.Play ();
+		}
+
+
+
+	}
+
+	/// <summary>
+	/// Loads the local text.用于读取本地的文字
+	/// </summary>
+	/// <param name="index">Index.</param>
+	public void LoadLocalText(string name)
+	{
+		string path =Application.dataPath+"/MyText/"+name+".txt";
+		StreamReader sr = new StreamReader (path,Encoding.UTF8);
+		textInfo.GetComponent<Text>().text =sr.ReadToEnd();
+
+		Debug.Log (path);
+	}
+
+
+	public void TextPanelDisplay()
+	{
+		MoveTextPanel (
+			()=>{}
+		);
+	}
 }

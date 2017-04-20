@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PressButton : MonoBehaviour {
 
     public Image[] icon=new Image[4];
@@ -13,7 +14,13 @@ public class PressButton : MonoBehaviour {
 
     public GameObject PanelOne;
 
+
+    public RectTransform Content1;
+    public RectTransform Content2;
+
     private int i = 0;
+
+    private int j = 1;
 
     void Awake()
     {
@@ -22,7 +29,22 @@ public class PressButton : MonoBehaviour {
 
     void Start()
     {
-        
+        /*icon[0].sprite = sprite[4];
+        icon[1].sprite = sprite[1];
+        icon[2].sprite = sprite[2];
+        icon[3].sprite = sprite[3];
+        Panel[0].SetActive(true);*/
+        //Tweener tweener1 = Content1.DOLocalMove(new Vector3(800, 0, 0), 1);
+        //tweener1.SetAutoKill(false);
+
+        //Tweener tweener2 = Content2.DOLocalMove(new Vector3(1600, 0, 0), 1);
+        //tweener2.SetAutoKill(false);
+
+    }
+
+    void Update()
+    {
+       
     }
 
     public void PressButtonHome()

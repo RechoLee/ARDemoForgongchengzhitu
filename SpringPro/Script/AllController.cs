@@ -88,13 +88,14 @@ public class AllController : MonoBehaviour
 			}
 		}
 	}
-
+		
 	void ChangeScene()
 	{
 		//这里将返回到上一个场景中
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			SceneManager.LoadScene (0);
 		}
+			
 	}
 
 
